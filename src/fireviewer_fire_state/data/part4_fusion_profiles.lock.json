@@ -1,0 +1,20 @@
+{
+  "schema": "fireviewer.part4-fusion-profile-lock.v1",
+  "profiles": [
+    {
+      "profile_id": "part4-framed-v1",
+      "resource": "data/part4_fusion_profile.framed-v1.json",
+      "profile_sha256": "601a83fda58fefe3d062ff0fe0bf19f7bbc31c29d8811acc74ae515db351ea27"
+    },
+    {
+      "profile_id": "part4-baseline-v3",
+      "resource": "data/part4_fusion_profile.baseline-v3.json",
+      "profile_sha256": "0f79f00a0471d666baee88e31d71e497570e4d37e9ccc8453e151d87fcc8d536"
+    },
+    {
+      "profile_id": "part4-baseline-v3-provenance",
+      "resource": "data/part4_fusion_profile.baseline-v3-provenance-1.0.1.json",
+      "profile_sha256": "6b0285e976eaf404aeba8e7b3f6ec5b51f009c08b2874e9e429fee395bf4aa4a"
+    }
+  ]
+}

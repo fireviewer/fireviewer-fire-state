@@ -1,0 +1,84 @@
+{
+  "schema": "fireviewer.part4-fusion-profile.v1",
+  "profile_id": "part4-framed-v1",
+  "profile_version": "1.0.0",
+  "algorithm_id": "fireviewer.part4.spatiotemporal-probability-fusion",
+  "algorithm_versions": [
+    "3.3.0"
+  ],
+  "calibration_state": "uncalibrated",
+  "grid": {
+    "resolutions_m": [
+      20,
+      50,
+      100,
+      250
+    ],
+    "max_cells": 4000000,
+    "aoi_margin_m": 500
+  },
+  "thresholds": {
+    "affected": 0.5,
+    "active": 0.6,
+    "uncertainty_low": 0.2,
+    "uncertainty_high": 0.8
+  },
+  "temporal": {
+    "active_half_life_hours": 6,
+    "propagation_rate_m_per_hour": 250,
+    "max_propagation_m": 5000
+  },
+  "priors": {
+    "background_probability": 0.05,
+    "affected_probability": 0.98,
+    "active_probability": 0.9,
+    "propagated_active_probability": 0.25
+  },
+  "uncertainty": {
+    "halo_base_probability": 0.2,
+    "halo_probability_scale": 0.15
+  },
+  "active_to_affected": {
+    "profile_probability": 0.65,
+    "weight": 1.2
+  },
+  "valid_negative": {
+    "minimum_reduction_factor": 0.05,
+    "probability_floor": 0.001
+  },
+  "sensors": {
+    "burned_probability": {
+      "profile_probability": 0.82,
+      "weight": 3
+    },
+    "active_probability": {
+      "profile_probability": 0.82,
+      "weight": 3.4
+    },
+    "thermal_footprint": {
+      "profile_probability": 0.72,
+      "weight": 1.2
+    },
+    "valid_negative": {
+      "profile_probability": 0.78,
+      "weight": 1
+    },
+    "camera_ray": {
+      "profile_probability": 0.58,
+      "weight": 0.8
+    },
+    "camera_ground_intersection": {
+      "profile_probability": 0.7,
+      "weight": 1.8
+    },
+    "official_perimeter": {
+      "profile_probability": 0.92,
+      "weight": 3
+    },
+    "modelled_perimeter": {
+      "profile_probability": 0.68,
+      "weight": 1.5
+    }
+  },
+  "profile_sha256": "601a83fda58fefe3d062ff0fe0bf19f7bbc31c29d8811acc74ae515db351ea27"
+}

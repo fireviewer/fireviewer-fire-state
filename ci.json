@@ -1,0 +1,23 @@
+{
+  "kind": "python",
+  "requirements": "requirements.ci.lock.txt",
+  "dependencies": [
+    {
+      "repository": "fireviewer/fireviewer-fire-state",
+      "release": "ci-dependencies-6d3dcd072171",
+      "asset": "fireviewer_contracts-0.1.0-py3-none-any.whl",
+      "sha256": "62f12d2b4b4cfee1abadf2aaf60aa2c408903a0151ed964c9a43ba579caa301f",
+      "upstream_repository": "fireviewer/fireviewer-contracts",
+      "attribution": "Original licence and author notices inside artifact"
+    }
+  ],
+  "tests": [
+    "tests"
+  ],
+  "migrations": false,
+  "typescript_package": false,
+  "producer_ui": false,
+  "limits": [
+    "CPU/offline code qualification only; no models, GPU, deployed services or native Unreal qualification."
+  ]
+}
