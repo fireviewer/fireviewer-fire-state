@@ -1,0 +1,3 @@
+# CPU-only code tests; no model download or corpus.
+fireviewer-fire-state==0.1.0
+pytest==9.0.3

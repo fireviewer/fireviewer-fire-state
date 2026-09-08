@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fireviewer-fire-state"
+version = "0.1.0"
+description = "Deterministic Part.4 fusion and calibration, with injected storage ports."
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = "AGPL-3.0-or-later"
+dependencies = [
+  "fireviewer-contracts==0.1.0",
+  "numpy==2.4.6",
+  "rasterio==1.4.4",
+  "shapely==2.1.2",
+  "pyproj==3.7.2",
+  "huggingface-hub==0.36.2",
+  "tzdata>=2025.2; sys_platform == 'win32'"
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.0.3", "ruff==0.15.21", "jsonschema==4.26.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["*.json", "*.yaml", "*.yml", "*.txt", "*.md", "py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers"
