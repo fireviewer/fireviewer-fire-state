@@ -1,0 +1,8 @@
+
+# Immutable source resources included in the accepted wheel.
+src/fireviewer_fire_state/data/part4_component_calibration_profiles.json -text
+src/fireviewer_fire_state/data/part4_fusion_profile.baseline-v3-provenance-1.0.1.json -text
+src/fireviewer_fire_state/data/part4_fusion_profile.baseline-v3-provenance.json -text
+src/fireviewer_fire_state/data/part4_fusion_profile.baseline-v3.json -text
+src/fireviewer_fire_state/data/part4_fusion_profile.framed-v1.json -text
+src/fireviewer_fire_state/data/part4_fusion_profiles.lock.json -text
