@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fireviewer-fire-state"
-version = "0.1.1"
+version = "0.1.2"
 description = "Deterministic Part.4 fusion and calibration, with injected storage ports."
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
 license = "AGPL-3.0-or-later"
 dependencies = [
-  "fireviewer-contracts==0.1.1",
+  "fireviewer-contracts==0.1.2",
   "numpy==2.4.6",
   "rasterio==1.4.4",
   "shapely==2.1.2",

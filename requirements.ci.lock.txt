@@ -201,10 +201,8 @@ colorama==0.4.6 \
 filelock==3.32.5 \
     --hash=sha256:142cd9fa77a872c5e78c62329a0d15278fadc686eb89e760017968961a4fd6b2 \
     --hash=sha256:f6a6a28f743f9b95ce19db5abe0f376f75eb56517dff21e1a4751e2657d3e83d
-fireviewer-contracts==0.1.1 \
-    --hash=sha256:6e50fa64c1f062dfc256c88f1c8c1b2307e0960ebbed1d47a5755708087ccb51
-fireviewer-fire-state==0.1.0 \
-    --hash=sha256:4c6a29ffa95036ffa6e1c426cf4175ef50bcd4363c1e62990972e39014f132e7
+fireviewer-contracts==0.1.2 \
+    --hash=sha256:55dbb550c35ed5409023c1d4c3192570b01f58a494f20be786b578125c31b4e9
 fsspec==2026.2.0 \
     --hash=sha256:6544e34b16869f5aacd5b90bdf1a71acb37792ea3ddf6125ee69a22a53fb8bff \
     --hash=sha256:98de475b5cb3bd66bedd5c4679e87b4fdfe1a3bf4d707b151b3c07e58c9a2437

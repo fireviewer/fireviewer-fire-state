@@ -1,5 +1,5 @@
-Version 0.1.1
+Version 0.1.2
 
-Publication de la restructuration intÃ©grÃ©e : package installable, dÃ©pendances internes finales verrouillÃ©es et manifeste sans fichiers cachÃ©s.
+Aligne la dépendance sur fireviewer-contracts 0.1.2 pour intégrer les contrats éditoriaux du backend déployé. Les algorithmes Part.4 sont inchangés. Les dépendances privées sont reçues et vérifiées par empreinte.
 
-Les licences et attributions sont conservÃ©es. Qualification CPU et environnement isolÃ© ; aucun dÃ©ploiement de production ni validation GPU/native Unreal.
+Validation locale : 37 tests sur le package installé. Licences et attributions conservées.
