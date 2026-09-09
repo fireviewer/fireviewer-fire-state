@@ -4,9 +4,9 @@
   "dependencies": [
     {
       "repository": "fireviewer/fireviewer-fire-state",
-      "release": "ci-dependencies-final-fa21e0419bfb",
-      "asset": "fireviewer_contracts-0.1.1-py3-none-any.whl",
-      "sha256": "6e50fa64c1f062dfc256c88f1c8c1b2307e0960ebbed1d47a5755708087ccb51",
+      "release": "ci-dependencies-closeout-8b34e18b5e46",
+      "asset": "fireviewer_contracts-0.1.2-py3-none-any.whl",
+      "sha256": "55dbb550c35ed5409023c1d4c3192570b01f58a494f20be786b578125c31b4e9",
       "upstream_repository": "fireviewer/fireviewer-contracts",
       "attribution": "Original licence and author notices inside artifact"
     }
