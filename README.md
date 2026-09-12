@@ -1,15 +1,17 @@
 # fireviewer-fire-state
 
+> **Source active FV · private.** Calcul Part.4, profils, calibration et évaluation. Voir [où travailler, quoi commiter et comment reprendre](ORGANISATION.md).
+
 Deterministic Part.4 fusion and calibration, with injected storage ports.
 
-Python package: `fireviewer_fire_state`. Version: `0.1.0`.
+Python package: `fireviewer_fire_state`. Version: `0.1.2`.
 
 ## Installation
 
 Install the versioned release wheels (including private FireViewer dependencies) from the release bundle. No sibling source checkout is required.
 
 ```sh
-python -m pip install --find-links /path/to/release/wheels fireviewer-fire-state==0.1.0
+python -m pip install --find-links /path/to/release/wheels fireviewer-fire-state==0.1.2
 python -m pytest tests -q
 ```
 
