@@ -1,5 +1,17 @@
 # fireviewer-fire-state
 
+## Repères documentaires — 19 septembre 2026
+
+- **Rôle :** Calcul déterministe Part.4, profils de fusion, calibration et évaluation.
+- **Statut :** Actif — package v0.1.2. La baseline Part.4 documentée reste non calibrée pour publication autonome.
+- **Entrées :** Contexte spatial validé, observations géoréférencées admissibles, état précédent et provenance.
+- **Sorties :** États `affected`, `active`, `observable`, incertitude et produits probabilistes/provenance retournés au backend.
+- **Limites :** Ne crée pas ses propres transactions métier. Interpolation seule ne doit pas créer de nouvelle surface brûlée; un calcul n’est pas une observation.
+
+[Fiche du dépôt](https://github.com/fireviewer/Fireviewer_doc/blob/main/docs/public/repositories/fireviewer-fire-state.md) · [Architecture](https://github.com/fireviewer/Fireviewer_doc/blob/main/docs/public/ARCHITECTURE.md) · [Statuts et vocabulaire](https://github.com/fireviewer/Fireviewer_doc/blob/main/docs/public/STATUTS_ET_VOCABULAIRE.md).
+
+Cette revue documentaire ne renouvelle aucun test ni aucune réception. Les procédures, versions et preuves techniques ci-dessous conservent leur périmètre et leur date.
+
 > **Source active FV · private.** Calcul Part.4, profils, calibration et évaluation. Voir [où travailler, quoi commiter et comment reprendre](ORGANISATION.md).
 
 Deterministic Part.4 fusion and calibration, with injected storage ports.
