@@ -12,7 +12,7 @@
 
 Cette revue documentaire ne renouvelle aucun test ni aucune réception. Les procédures, versions et preuves techniques ci-dessous conservent leur périmètre et leur date.
 
-> **Source active FV · private.** Calcul Part.4, profils, calibration et évaluation. Voir [où travailler, quoi commiter et comment reprendre](ORGANISATION.md).
+> **Source active FV · public.** Calcul Part.4, profils, calibration et évaluation. Voir [où travailler, quoi commiter et comment reprendre](ORGANISATION.md).
 
 Deterministic Part.4 fusion and calibration, with injected storage ports.
 
@@ -20,7 +20,7 @@ Python package: `fireviewer_fire_state`. Version: `0.1.2`.
 
 ## Installation
 
-Install the versioned release wheels (including private FireViewer dependencies) from the release bundle. No sibling source checkout is required.
+Install the versioned release wheels (including versioned FireViewer dependencies) from the release bundle. No sibling source checkout is required.
 
 ```sh
 python -m pip install --find-links /path/to/release/wheels fireviewer-fire-state==0.1.2
@@ -31,7 +31,7 @@ Optional model/provider environments are separate extras and retain their existi
 
 ## Canonical repository and rights
 
-Canonical source: [`fireviewer/fireviewer-fire-state`](https://github.com/fireviewer/fireviewer-fire-state). Technical stewardship: FIRE-VIEWER. Repository access: private.
+Canonical source: [`fireviewer/fireviewer-fire-state`](https://github.com/fireviewer/fireviewer-fire-state). Technical stewardship: FIRE-VIEWER. Repository access: public.
 
 Historical authorship, AGPL-3.0-or-later notices and third-party rights are retained. Technical stewardship and repository placement are not a signed assignment of intellectual-property rights. Any pre-association assets remain subject to their documented licences or agreements.
 
@@ -39,7 +39,7 @@ This repository is the maintained implementation location for the responsibility
 
 ## Delivery and qualification
 
-Versioned packages are distributed through the authorised private release bundles. Current container locks, reconstruction inputs and dated acceptance records are maintained in [fireviewer-docker](https://github.com/fireviewer/fireviewer-docker).
+Versioned packages are distributed through the versioned release bundles. Current container locks, reconstruction inputs and dated acceptance records are maintained in [fireviewer-docker](https://github.com/fireviewer/fireviewer-docker).
 
 Package installation, CPU/schema tests, service deployment and real-data acceptance are separate checks. CPU/schema tests do not qualify GPU, visual or scientific performance. This documentation update does not publish a package, rebuild an image or change production configuration.
 
@@ -49,4 +49,12 @@ Extraction correspondence and hashes remain in the historical migration dossier.
 
 API de calcul : `fireviewer_fire_state.fire_state_fusion.fuse_daily_fire_state`, profils dans `part4_fusion_profiles`. Un contexte spatial validé reste obligatoire. Les résultats et grilles sont retournés au backend ; la librairie ne crée aucune transaction ou révision métier.
 
-Les dépendances de base sont verrouillées avec hashes dans `requirements.lock.txt` (Python 3.13). Installer les wheels privés du même bundle via `--find-links`. Les extras lourds restent liés à leurs versions existantes et ne qualifient aucun GPU. Les commandes de reprise et leurs prérequis sont décrits dans [ORGANISATION.md](ORGANISATION.md). Les reçus du dossier de migration restent des preuves historiques, pas une nouvelle qualification.
+Les dépendances de base sont verrouillées avec hashes dans `requirements.lock.txt` (Python 3.13). Installer les wheels versionnés du même bundle via `--find-links`. Les extras lourds restent liés à leurs versions existantes et ne qualifient aucun GPU. Les commandes de reprise et leurs prérequis sont décrits dans [ORGANISATION.md](ORGANISATION.md). Les reçus du dossier de migration restent des preuves historiques, pas une nouvelle qualification.
+
+## Ouverture du code source — 19 septembre 2026
+
+Ce dépôt fait partie du premier lot de huit composants FIRE-VIEWER ouvert au public sur décision du mainteneur. Le code original reste sous **AGPL-3.0-or-later** et la documentation originale sous **CC BY 4.0**, avec les notices et droits tiers existants.
+
+Cette ouverture porte sur le code, son historique et les artefacts de développement déjà associés au dépôt. Les services déployés, comptes, données, corpus, modèles, secrets et autorisations des ressources externes gardent leur propre périmètre. Les sources des sites, du backend, des applications Android et de l’infrastructure restent privées. La visibilité publique ne constitue ni une nouvelle recette fonctionnelle ni un acte de cession des droits.
+
+[Inventaire et périmètre d’ouverture](https://github.com/fireviewer/Fireviewer_doc/blob/main/docs/public/OPEN_SOURCE.md).
