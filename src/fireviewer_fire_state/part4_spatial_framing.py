@@ -253,6 +253,8 @@ def _admit(
     observations: tuple[SpatialObservationV2, ...],
     context: Part4SpatialContextV1,
     prior: FusedFireState | None,
+    *,
+    temporal_basis: Literal["daily", "instant"] = "daily",
 ) -> tuple[
     tuple[SpatialObservationV2, ...], dict[str, str], list[_Proposal], float,
     dict[str, SpatialAdmissionDecisionV1],
@@ -338,7 +340,7 @@ def _admit(
             ):
                 rejected[item.observation_id] = "historical_observation_requires_revision"
                 continue
-        if item.observation_kind == "valid_negative" and (
+        if temporal_basis == "daily" and item.observation_kind == "valid_negative" and (
             item.observed_at.astimezone(ZoneInfo("Europe/Paris")).date() != context.local_date
         ):
             rejected[item.observation_id] = "historical_observation_requires_revision"
@@ -494,6 +496,7 @@ def reconstruct_framed_state(
     context: Part4SpatialContextV1,
     prior: FusedFireState | None,
     profile: FusionProfileV1,
+    temporal_basis: Literal["daily", "instant"] = "daily",
 ) -> FusedFireState:
     if context.policy_revision != "part4-spatial-framing-1.1.0":
         raise ValueError("spatial_framing_policy_requires_replay")
@@ -511,7 +514,9 @@ def reconstruct_framed_state(
         or prior.state.state_valid_at != context.parent_valid_at
     ):
         raise ValueError("prior_requires_seeded_reconstruction")
-    admitted, rejected, candidates, outside_area, decisions = _admit(observations, context, prior)
+    admitted, rejected, candidates, outside_area, decisions = _admit(
+        observations, context, prior, temporal_basis=temporal_basis
+    )
     previous = prior.state.perimeter.affected if prior else context.seed.affected
     previous_area = area_ha(previous)
     common: dict[str, Any] = dict(
@@ -526,6 +531,7 @@ def reconstruct_framed_state(
         prior_result=prior,
         spatial_context=context,
         algorithm_version=FUSION_ALGORITHM_VERSION,
+        temporal_basis=temporal_basis,
     )
     result = _fuse_probability_state(observations=admitted, **common)
     result = _retain_supported_growth(result, previous, admitted)
@@ -566,6 +572,7 @@ def reconstruct_framed_state(
                 item.model_dump(mode="json", by_alias=True)
                 for item in sorted(observations, key=lambda row: row.observation_id)
             ],
+            **({"temporal_basis": "instant-v1"} if temporal_basis == "instant" else {}),
         }
     )
     source_perimeter_sha = sha256_hex(result.state.perimeter.model_dump(mode="json", by_alias=True))
@@ -636,7 +643,10 @@ def reconstruct_framed_state(
     perimeter = result.state.perimeter.model_copy(update={"framing": receipt})
     state = result.state.model_copy(
         update={
-            "state_id": f"DFS-{local_date.isoformat()}-{input_sha[:24]}",
+            "state_id": (
+                f"IFS-{context.state_valid_at.astimezone(UTC).strftime('%Y%m%dT%H%M%S%fZ')}-{input_sha[:24]}"
+                if temporal_basis == "instant" else f"DFS-{local_date.isoformat()}-{input_sha[:24]}"
+            ),
             "source_input_sha256": input_sha,
             "framing": receipt,
             "perimeter": perimeter,

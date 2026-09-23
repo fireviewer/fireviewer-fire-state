@@ -9,7 +9,7 @@ import tempfile
 from dataclasses import dataclass, field, replace
 from datetime import UTC, date, datetime, time
 from pathlib import Path
-from typing import Any, cast
+from typing import Any, Literal, cast
 from zoneinfo import ZoneInfo
 
 import numpy as np
@@ -463,14 +463,41 @@ def fuse_daily_fire_state(
     prior_result: FusedFireState | None = None,
     profile: FusionProfileV1 | None = None,
 ) -> FusedFireState:
-    from fireviewer_fire_state.part4_spatial_framing import reconstruct_framed_state
-
+    """Frozen daily protocol adapter; existing hashes and admission policy are preserved."""
     if spatial_context is None:
         raise ValueError("awaiting_spatial_initialization")
+    if spatial_context.local_date != local_date:
+        raise ValueError("spatial_context_identity_mismatch")
+    return fuse_state_at(
+        incident_id=incident_id, episode_id=episode_id,
+        valid_at=spatial_context.state_valid_at, observations=observations,
+        spatial_context=spatial_context, prior_result=prior_result, profile=profile,
+        daily_compatibility=True,
+    )
+
+
+def fuse_state_at(
+    *,
+    incident_id: str,
+    episode_id: str | None,
+    valid_at: datetime,
+    observations: tuple[SpatialObservationV2, ...],
+    spatial_context: Part4SpatialContextV1,
+    prior_result: FusedFireState | None = None,
+    profile: FusionProfileV1 | None = None,
+    daily_compatibility: bool = False,
+) -> FusedFireState:
+    """Fuse at an explicit instant. Calendar labels belong to the checkpoint adapter."""
+    from fireviewer_fire_state.part4_spatial_framing import reconstruct_framed_state
+
+    if valid_at.tzinfo is None or valid_at.utcoffset() is None:
+        raise ValueError("valid_at requires a timezone")
+    if valid_at != spatial_context.state_valid_at:
+        raise ValueError("spatial_context_time_mismatch")
     return reconstruct_framed_state(
         incident_id=incident_id,
         episode_id=episode_id,
-        local_date=local_date,
+        local_date=spatial_context.local_date,
         observations=observations,
         context=spatial_context,
         prior=prior_result,
@@ -478,6 +505,7 @@ def fuse_daily_fire_state(
         or load_fusion_profile(
             DEFAULT_FUSION_PROFILE_ID, algorithm_version=FUSION_ALGORITHM_VERSION
         ),
+        temporal_basis="daily" if daily_compatibility else "instant",
     )
 
 
@@ -495,6 +523,7 @@ def _fuse_probability_state(
     spatial_context: Part4SpatialContextV1 | None = None,
     prior_result: FusedFireState | None = None,
     algorithm_version: str = BASELINE_ALGORITHM_VERSION,
+    temporal_basis: Literal["daily", "instant"] = "daily",
 ) -> FusedFireState:
     """Fuse one incident-day state without reading any published reference geometry."""
 
@@ -729,7 +758,11 @@ def _fuse_probability_state(
             )
             or (
                 spatial_context is not None
-                and max(item.observed_at for item in group).astimezone(_PARIS).date() < local_date
+                and (
+                    max(item.observed_end_at or item.observed_at for item in group) < target_end
+                    if temporal_basis == "instant"
+                    else max(item.observed_at for item in group).astimezone(_PARIS).date() < local_date
+                )
             )
         )
         ledger_key = sha256_hex(list(group_key))
@@ -898,7 +931,10 @@ def _fuse_probability_state(
             )
             if active_before is not None:
                 age_hours = (
-                    target_end - max(item.observed_at for item in group)
+                    target_end - max(
+                        (item.observed_end_at or item.observed_at)
+                        if temporal_basis == "instant" else item.observed_at for item in group
+                    )
                 ).total_seconds() / 3600
                 active = np.maximum(
                     active_before,

@@ -58,3 +58,7 @@ Ce dépôt fait partie du premier lot de huit composants FIRE-VIEWER ouvert au p
 Cette ouverture porte sur le code, son historique et les artefacts de développement déjà associés au dépôt. Les services déployés, comptes, données, corpus, modèles, secrets et autorisations des ressources externes gardent leur propre périmètre. Les sources des sites, du backend, des applications Android et de l’infrastructure restent privées. La visibilité publique ne constitue ni une nouvelle recette fonctionnelle ni un acte de cession des droits.
 
 [Inventaire et périmètre d’ouverture](https://github.com/fireviewer/Fireviewer_doc/blob/main/docs/public/OPEN_SOURCE.md).
+
+## Migration par révisions d’incident
+
+La version candidate 0.1.3 introduit les révisions temporelles documentées dans [le guide de migration](docs/INCIDENT_REVISIONS.md). Les contrôles CPU ne qualifient pas les modèles, la production ou le rendu Unreal. La compatibilité quotidienne reste maintenue.
